@@ -1,1 +1,1 @@
-## This is source code to build an application for an Auction House
+## Auction House is an application where people could create,bid and close auctions.
