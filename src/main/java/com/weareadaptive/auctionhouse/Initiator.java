@@ -1,8 +1,11 @@
-import model.AuctionPool;
-import model.UserPool;
-import screen.DataContext;
+package com.weareadaptive.auctionhouse;
+
+import com.weareadaptive.auctionhouse.model.AuctionPool;
+import com.weareadaptive.auctionhouse.model.UserPool;
+import com.weareadaptive.auctionhouse.screen.DataContext;
 
 public class Initiator {
+
 
     private DataContext dataContext;
 

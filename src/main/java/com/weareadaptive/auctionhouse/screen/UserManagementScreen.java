@@ -1,4 +1,4 @@
-package screen;
+package com.weareadaptive.auctionhouse.screen;
 
 public class UserManagementScreen extends ScreenTemplate {
     public void printScreen(DataContext dataContext) {

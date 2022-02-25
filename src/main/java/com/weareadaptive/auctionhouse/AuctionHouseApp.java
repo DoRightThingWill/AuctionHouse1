@@ -1,4 +1,6 @@
-import screen.LoginScreen;
+package com.weareadaptive.auctionhouse;
+
+import com.weareadaptive.auctionhouse.screen.LoginScreen;
 
 public class AuctionHouseApp {
 

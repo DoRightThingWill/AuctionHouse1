@@ -1,11 +1,12 @@
-package model;
+package com.weareadaptive.auctionhouse.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
 
-public record Auction(int ID, String symbol, int quantity, float minPrice, String owner) implements Model {
+public record Auction(int ID, String symbol, int quantity, double minPrice, String owner) implements Model {
 
     private static Status status;
     private static List<Bid> bids;
@@ -28,14 +29,14 @@ public record Auction(int ID, String symbol, int quantity, float minPrice, Strin
 
         var remainingQuantity = this.quantity;
         List<Bid> winningBids = new ArrayList<>();
-        float totalRevenue = 0;
+        BigDecimal totalRevenue = new BigDecimal(0.0);
         int soldQuantity = 0;
 
         while (bidsIterator.hasNext() && remainingQuantity > 0) {
             var currentBid = bidsIterator.next();
             int bidQuantity = Math.min(remainingQuantity, currentBid.quantity());
             remainingQuantity -= bidQuantity;
-            totalRevenue += bidQuantity * currentBid.price();
+            totalRevenue = BigDecimal.valueOf(bidQuantity * currentBid.price() + totalRevenue.doubleValue());
             soldQuantity += bidQuantity;
 
             winningBids.add(new Bid(currentBid.user(), bidQuantity, currentBid.price()));
@@ -44,7 +45,7 @@ public record Auction(int ID, String symbol, int quantity, float minPrice, Strin
         closeSummary = new CloseSummary(totalRevenue, soldQuantity, winningBids);
     }
 
-    public void bid(String bidPerson, int quantity, float price) {
+    public void bid(String bidPerson, int quantity, double price) {
         this.bids.add(new Bid(bidPerson, quantity, price));
     }
 

@@ -1,4 +1,4 @@
-package screen;
+package com.weareadaptive.auctionhouse.screen;
 
 import java.io.PrintStream;
 import java.util.InputMismatchException;

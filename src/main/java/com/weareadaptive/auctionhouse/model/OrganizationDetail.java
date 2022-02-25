@@ -1,4 +1,4 @@
-package model;
+package com.weareadaptive.auctionhouse.model;
 
 
 import java.util.List;

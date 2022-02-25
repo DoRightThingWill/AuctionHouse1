@@ -1,6 +1,6 @@
-package screen;
+package com.weareadaptive.auctionhouse.screen;
 
-import model.Auction;
+import com.weareadaptive.auctionhouse.model.Auction;
 
 public class AuctionManagementScreen extends ScreenTemplate {
 
@@ -88,12 +88,12 @@ public class AuctionManagementScreen extends ScreenTemplate {
 
     }
 
+
+
+
     private void bidOnAuction(DataContext dataContext) {
-        dataContext
-                .auctionPool()
+        dataContext.auctionPool().getBiddableAuctions(dataContext.currentUser())
                 .stream()
-                .filter(auction -> auction.status().equals(Auction.Status.OPEN))
-                .filter(auction -> !auction.owner().equals(dataContext.currentUser()))
                 .forEach(auction -> out.printf("Auction ID : %d || Symbol: %s", auction.ID(), auction.symbol()));
 
         try {

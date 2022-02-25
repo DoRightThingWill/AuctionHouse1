@@ -1,7 +1,7 @@
-package screen;
+package com.weareadaptive.auctionhouse.screen;
 
-import model.AuctionPool;
-import model.UserPool;
+import com.weareadaptive.auctionhouse.model.AuctionPool;
+import com.weareadaptive.auctionhouse.model.UserPool;
 
 public record DataContext(UserPool userPool, AuctionPool auctionPool) {
     private static String currentUser;

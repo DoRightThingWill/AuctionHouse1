@@ -1,5 +1,7 @@
-package screen;
+package com.weareadaptive.auctionhouse.screen;
 
+
+import com.weareadaptive.auctionhouse.model.MyException;
 
 public class LoginScreen extends ScreenTemplate {
     private final DataContext dataContext;
@@ -22,9 +24,9 @@ public class LoginScreen extends ScreenTemplate {
         out.println("Enter your password :");
         var password = scanner.nextLine();
 
-        dataContext.userPool().findUserByName(userName, password).ifPresentOrElse(user -> {
+        dataContext.userPool().findUserByNamePassword(userName, password).ifPresentOrElse(user -> {
             dataContext.setCurrentUser(userName);
             userScreen.printScreen(dataContext, user.isAdmin());
-        }, () -> out.println("Username and password does not match our record"));
+        }, () -> new MyException("Username and password does not match our record"));
     }
 }

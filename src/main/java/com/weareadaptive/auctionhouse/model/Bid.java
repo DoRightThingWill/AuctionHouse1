@@ -1,6 +1,6 @@
-package model;
+package com.weareadaptive.auctionhouse.model;
 
-public record Bid(String user, int quantity, float price) {
+public record Bid(String user, int quantity, double price) {
 
     @Override
     public String toString() {
