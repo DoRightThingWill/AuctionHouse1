@@ -1,6 +1,7 @@
 package com.weareadaptive.auctionhouse.screen;
 
 import com.weareadaptive.auctionhouse.model.Auction;
+import com.weareadaptive.auctionhouse.model.MyException;
 
 public class AuctionManagementScreen extends ScreenTemplate {
 
@@ -19,9 +20,12 @@ public class AuctionManagementScreen extends ScreenTemplate {
 
     private void createAuction(DataContext dataContext) {
         try {
+
             out.println("===>Create auction :");
             out.println("Enter your symbol");
             var symbol = scanner.nextLine();
+            symbolExistThrow(dataContext, symbol);
+
             out.println("Enter the quantity:");
             var quantity = Parser.parseInt(scanner.nextLine());
 
@@ -35,6 +39,13 @@ public class AuctionManagementScreen extends ScreenTemplate {
             out.printf("Auction ID %d is created %n", auctionID);
         } catch (Exception e) {
             out.println(e.getMessage());
+        }
+    }
+
+    private void symbolExistThrow(DataContext dataContext, String symbol){
+        if(dataContext.auctionPool().stream()
+                .anyMatch(auction -> auction.symbol().equals(symbol))){
+            throw new MyException("Symbol already exist");
         }
     }
 

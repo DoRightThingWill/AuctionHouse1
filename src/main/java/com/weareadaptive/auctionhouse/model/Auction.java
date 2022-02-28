@@ -13,6 +13,15 @@ public record Auction(int ID, String symbol, int quantity, double minPrice, Stri
     private static CloseSummary closeSummary;
 
     public Auction {
+        if(ID <= 0){
+            throw new MyException("invalid ID");
+        }
+        if(quantity <= 0){
+            throw new MyException("invalid quantity");
+        }
+        if(minPrice <= 0){
+            throw new MyException("invalid minimum price");
+        }
         this.status = Status.OPEN;
         this.bids = new ArrayList<>();
     }
