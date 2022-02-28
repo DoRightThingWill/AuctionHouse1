@@ -89,8 +89,6 @@ public class AuctionManagementScreen extends ScreenTemplate {
     }
 
 
-
-
     private void bidOnAuction(DataContext dataContext) {
         dataContext.auctionPool().getBiddableAuctions(dataContext.currentUser())
                 .stream()

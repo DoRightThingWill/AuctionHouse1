@@ -18,7 +18,7 @@ public class AuctionPool extends ModelPool<Auction> {
                 .stream()
                 .filter(auction -> auction.ID() == id)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Can not find auction by this ID!"));
+                .orElseThrow(() -> new MyException("Can not find auction by this ID!"));
     }
 
     public List<Auction> getBiddableAuctions(String userName) {

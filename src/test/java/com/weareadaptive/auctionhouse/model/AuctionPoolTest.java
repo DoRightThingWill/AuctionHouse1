@@ -3,13 +3,14 @@ package com.weareadaptive.auctionhouse.model;
 import com.weareadaptive.auctionhouse.TestData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AuctionPoolTest {
 
@@ -64,5 +65,21 @@ class AuctionPoolTest {
         assertTrue(
                 expectedAuctions.stream()
                         .noneMatch(auction -> auction.owner().equals(user)));
+    }
+
+    @DisplayName("return auction found by ID")
+    @Test
+    void returnAuctionFoundByID(){
+        // arrange
+        this.auctionPool.add(1, this.testData.auc1);
+        this.auctionPool.add(2, this.testData.auc2);
+        this.auctionPool.add(3, this.testData.auc3);
+        // act
+        var expectedAuction = auctionPool.getAuctionByID(1);
+        // assert
+        assertAll(
+                ()->assertEquals(1, expectedAuction.ID()),
+                ()->assertThrows(MyException.class,()->auctionPool.getAuctionByID(4))
+        );
     }
 }

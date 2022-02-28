@@ -24,11 +24,11 @@ class UserPoolTest {
     @Test
     void returnUserWhenCrateUser() {
         // arrange
-        testUsersPool.createUser("user4", "user4", "user4", "user4PWD", "org1", true);
+        testUsersPool.createUser("user4", "user4", "user4", "user4PWD", "org1");
         testUsersPool.createUser("admin","a","a", "a", "a", true);
         // act
         User actual = testUsersPool.models().get(5);
-        User expected = new User(5, "user4", "user4", "user4", "user4PWD", "org1", true);
+        User expected = new User(5, "user4", "user4", "user4", "user4PWD", "org1", false);
         // assert
         assertAll(
                 () -> assertEquals(actual.ID(), expected.ID()),
@@ -83,5 +83,11 @@ class UserPoolTest {
     void allOrganizationDetails() {
     }
 
-
+    @DisplayName("show organization details")
+    @Test
+    void returnDetailedOrganizations(){
+        var organizationWithDetails = testUsersPool.allOrganizationDetails();
+        organizationWithDetails.forEach(organizationDetail ->
+                assertEquals(1, organizationDetail.users().size()));
+    }
 }

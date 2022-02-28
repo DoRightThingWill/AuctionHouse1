@@ -58,7 +58,7 @@ public class UserPool extends ModelPool<User> {
                 .toList();
     }
 
-    private void userNameExistThenThrow(String userName){
+    public void userNameExistThenThrow(String userName){
         if(models().values()
                 .stream()
                 .anyMatch(user -> user.userName().equals(userName))
